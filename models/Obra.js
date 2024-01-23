@@ -14,9 +14,18 @@ telefono: { type: Number, required: true },
 correo: { type: String, required: true, ref: "empresas" },
 observacion: { type: String, required: false },
 hormigonV: { type: Number, required: true },
-maderaV: { type: Number, required: true },
+maderaV: { type: Number },
 selectedDate: { type: Date, required: true },
 direccion: { type: Schema.Types.Mixed, required: true, ref: 'direcciones' },
+location: { 
+    lat: {type: Number, required: true},
+    lng: {type:Number, required: true}
+},
+unidadVecinal: {type: Number, required: true},
+personas: {type:Number, required: true},
+tipoDeConstruccion: {type: String, required: true},
+rubroConstruccion:{ type: String, required: true},
+img: { type:String}
 });
 
 const Obra = model(collection, schema)

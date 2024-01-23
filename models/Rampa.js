@@ -11,9 +11,11 @@ direccionRampa: { type: Schema.Types.Mixed, required: true, ref: 'direcciones ra
 area: {type: Number, required: true},
 unidadVecinal: {type: Number, required: true},
 location: { 
-    lat: {type: Number, required: true, ref: "direcciones rampa"},
-    lng: {type: Number, required: true, ref: "direcciones rampa"}
+    lat: {type: Number, required: true},
+    lng: {type: Number, required: true}
 },
+img: { type:String },
+comuna: {type: String, required: true}
 });
 
 const Rampa = model(collection, schema)

@@ -13,31 +13,10 @@ const schema = new Schema({
     ref: 'rampas',
     required: true
   },
-  distancia: {
+  distance: {
     type: Number,
     required:true
   },
-  nombreEmpresa:{
-    type: String,
-    required: true,
-    ref: 'obra'
-  },
- direccion:{
-  type: String,
-  required: true,
-  ref: "obra"
- },
- direccionRampas:{
-  type: String,
-  required: true,
-  ref: "rampas"
- },
- hormigonV:{
-  type: Number,
-  required: true,
-  ref: "obra"
- }
-  // Otros campos necesarios
 });
 
 const Match = model(collection, schema)

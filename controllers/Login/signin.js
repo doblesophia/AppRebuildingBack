@@ -1,5 +1,6 @@
 import Empresa from '../../models/Empresa.js';
 import Vecino from "../../models/Vecino.js"
+import Admin from "../../models/Admin.js"
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; // Importa jsonwebtoken
 
@@ -57,6 +58,29 @@ const signinController = async (req, res) => {
         return res.status(200).json({ token, user: userVecino });
       }
   
+      const userAdmin = await Admin.findOne({ email });
+      if (userAdmin) {
+        const passwordMatch = await bcrypt.compare(password, userAdmin.password);
+        if (passwordMatch) {
+          userAdmin.online = true;
+          userAdmin.save();
+        }
+  
+        if (!passwordMatch) {
+          return res.status(401).json({ error: 'Credenciales incorrectas' });
+        }
+  
+        const token = jwt.sign(
+          {
+            userId: userAdmin._id,
+            email: req.body.email || req.user.email,
+          },
+          process.env.SECRET,
+          { expiresIn: 60 * 60 * 24 }
+        );
+  
+        return res.status(200).json({ token, user: userAdmin });
+      }
       // Si no se encuentra en ninguno de los modelos, devuelve un error
       return res.status(401).json({ error: 'Credenciales incorrectas' });
     } catch (error) {
