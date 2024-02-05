@@ -8,15 +8,11 @@ import matches from "./matches.js"
 import logout from "./logout.js";
 import RegisterAdmin from "./RegisterAdmin.js"
 import perfilObra from "./perfilObra.js"
-import uploadsImage from "./uploads.js"
 import perfilVecino from "./perfilVecino.js"
+import subirimagen from "./subirimagen.js"
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 
 
 router.use("/registerempresa", RegisterEmpresa)
@@ -28,8 +24,8 @@ router.use("/matches", matches)
 router.use("/signout", logout)
 router.use("/registeradmin", RegisterAdmin)
 router.use("/perfilobra", perfilObra)
-router.use("/subirimagen", uploadsImage)
 router.use("/perfilvecino", perfilVecino)
+router.use("/subirfoto", subirimagen)
 
 
 

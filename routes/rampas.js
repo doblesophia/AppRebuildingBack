@@ -12,5 +12,7 @@ router.post("/", createRampas)
 router.get("/", readRampas)
 router.post("/direcciones", createRampaDireccion)
 router.get("/direcciones", getDireccionesRampa)
+router.post("/rampassinpago", createRampas)
+router.get("rampassinpago", readRampas)
 
 export default router

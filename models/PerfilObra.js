@@ -8,8 +8,8 @@ const schema = new Schema({
     hormigonV: {type: Number, required: true},
     nombreEmpresa: {type: String, required: true},
     direccion: { type: Schema.Types.Mixed, required: true},
-    tipoDeConstruccion: {type: String, required: true},
-    rubroConstruccion: {type: String, required: true},
+    tipoDeConstruccion: {type: [String], required: true},
+    rubroConstruccion: {type: [String], required: true},
     img: { type:String }
 })
 

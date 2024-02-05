@@ -1,9 +1,31 @@
+import express from "express"
 import Rampa from "../../models/Rampa.js"
+import multer from "multer"
+import cloudinary from "cloudinary"
+import { createWriteStream } from "fs";
+import { promisify } from "util";
+import stream from "stream";
+
+const router = express.Router()
+const pipeline = promisify(stream.pipeline);
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
+cloudinary.config({
+    cloud_name: 'drdwvhrrd',
+    api_key: '865977116471173',
+    api_secret: 'sFHiK2ylp4qi3D1eS3Ky_d4cqNw',
+  });
+  
 
 const createRampa = async (req, res) => {
   try {
-    // Obtener los datos necesarios de la solicitud (req.body, req.params, etc.)
-    const { direccionRampa, telefono, correo, selectedDate, nombre, observacion, area, unidadVecinal, location:{lat, lng}, comuna } = req.body;
+    
+ 
+
+    const { direccionRampa, telefono, correo, selectedDate, nombre, observacion, area, unidadVecinal, location:{lat, lng}, comuna, imageUrl } = req.body;
 
     // Crear una nueva instancia de la obra con los datos proporcionados
     const newRampa = new Rampa({
@@ -19,7 +41,8 @@ const createRampa = async (req, res) => {
         lat,
         lng
       },
-      comuna
+      comuna,
+     imageUrl
     });
 
     // Guardar la nueva obra en la base de datos

@@ -14,7 +14,7 @@ location: {
     lat: {type: Number, required: true},
     lng: {type: Number, required: true}
 },
-img: { type:String },
+imageUrl: { type:String },
 comuna: {type: String, required: true}
 });
 
